@@ -1,0 +1,2 @@
+curl -X POST -d "grant_type=password&username=nova&password=nova" -u "fYNPgewrkoXrvJ4CJFr6n4Hi0GxQIxmX6BrBt0Fe:6PQLijJhEVOvXwCmL1TjlrhpKSVZlX5xeDCJ82mL2x9Tugz4zYuUs32HML3WcqZwwnUS5agav9czuVv0SUMH8p7uqqjZyKEzyFFZgdudoFRJO0qdMnG9IBfQtBh5zzm4 http://127.0.0.1:8000/o/token/
+curl -H "Authorization:Bearer 1iXbIKZUrTtAG5uzcFJraLsDuSOMuB" http://127.0.0.1:8000/distro/1/

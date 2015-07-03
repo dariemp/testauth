@@ -1,0 +1,62 @@
+from django.shortcuts import render
+from models import Distro
+from serializer import DistroSerializer
+from rest_framework import generics, permissions
+from rest_framework.decorators import permission_classes
+from oauth2_provider.views.generic import ProtectedResourceView
+from django.http import HttpResponse
+
+from django.shortcuts import render_to_response, redirect, render
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
+# from django.template.context import RequestContext
+
+#def login(request):
+    # context = RequestContext(request, {
+    #     'request': request, 'user': request.user})
+    # return render_to_response('login.html', context_instance=context)
+#    return render(request, 'login.html')
+
+
+#@login_required(login_url='/')
+def home(request):
+    return render_to_response('home.html')
+    #return HttpResponse('Protected with OAuth2!')
+
+
+def logout(request):
+    #auth_logout(request)
+    social_user = request.user.social_auth.filter(provider = 'facebook',).first()
+    print social_user.extra_data['access_token'] 
+    return HttpResponse("Welcome user %s your access_token is %s " % social_user, str(ocial_user.extra_data['access_token'])) 
+
+
+# Create your views here.
+
+
+# class DistroList(generics.ListCreateAPIView):
+#     queryset = Distro.objects.all()
+#     serializer_class = DistroSerializer
+# 
+# class DistroDetail(generics.RetrieveDestroyAPIView):
+#     queryset = Distro.objects.all()
+#     serializer_class = DistroSerializer
+
+class DistroList(generics.ListCreateAPIView):
+    serializer_class = DistroSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        return Distro.objects.all()
+
+
+class DistroDetail(generics.RetrieveDestroyAPIView):
+    serializer_class = DistroSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        return Distro.objects.all()
+
+# class ApiEndpoint(ProtectedResourceView):
+#     def get(self, request, *args, **kwargs):
+#         return HttpResponse('Protected with OAuth2!')

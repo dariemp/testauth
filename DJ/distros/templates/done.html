@@ -1,0 +1,22 @@
+<DOCTYPE html>
+<html lang='us'>
+	
+<head>
+	<h1> Welcome </h1>
+</head>
+<body>
+	
+<p> Bienvenido usuario {{ user.username|upper }} </p>
+<p> Tu token de acceso al backend {{ backend }} es: </p> 
+<p>	{{ token }} </p>
+
+	<p> Ahora podra obtener un token validado para usar en la api protegida,mediante la petición GET 
+		http://port-8000.8k6i3sgl9o8t1emi6nqmnjejoa9py14iwdjq9ol7fxjn61or.box.codeanywhere.com/users/
+		register-by-token/(?Pbackend[^/]+))/?access_token="Token proporcionado por los backend de las redes sociales"</p>
+	<P>
+		
+	<p> Una vez obtenido el token, de la api pruebe con curl lo siguiente: </p>
+	  <p> curl -H "Authorization:Bearer token-para-acceso-a-la-api " http://preview.8k6i3sgl9o8t1emi6nqmnjejoa9py14iwdjq9ol7fxjn61or.box.codeanywhere.com:8000/distro/</p>
+		<p> Deberia obtener una respuesta como esta [{"id":1,"name":"Nova","description":"Distro de alta calidad"}] </p>
+ 	</body>	
+</html>

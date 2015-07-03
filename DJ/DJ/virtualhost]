@@ -1,0 +1,23 @@
+<IfModule mod_ssl.c>
+<VirtualHost 127.0.0.1:443>
+    ServerName plataforma.nova.cu
+    SSLEngine on
+    SSLProtocol -All +TLSv1
+    SSLCertificateFile    /home/likewise-open/UCI/jrabelo/EC/certs/ndcip.crt
+    SSLCertificateKeyFile /home/likewise-open/UCI/jrabelo/EC/private/ndcip.key
+    SSLCACertificateFile  /home/likewise-open/UCI/jrabelo/EC/certs/ec.crt
+
+    Alias /favicon.ico /usr/share/icons/oxygen/128x128/apps/system-software-update.png
+    Alias /static/ /var/www/ndcip/static/
+
+
+
+    WSGIScriptAlias / /home/likewise-open/UCI/jrabelo/Escritorio/DJ/DJ/wsgi.py
+    WSGIPythonPath /home/likewise-open/UCI/jrabelo/Escritorio/DJ
+    <Directory /home/likewise-open/UCI/jrabelo/Escritorio/DJ/DJ>
+    <Files wsgi.py>
+    Require all granted 
+    </Files>
+    </Directory>
+</VirtualHost>
+</IfModule>
